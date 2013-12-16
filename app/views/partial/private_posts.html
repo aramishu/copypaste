@@ -1,9 +1,15 @@
 <div ng-repeat="post in userFireObj.posts" class="panel panel-danger">
 	<div class="panel-heading">
 		<input type="text" class="form-control private-post-topic" ng-model="post.topic" placeholder="Enter topic">
+		<div class="btn-group">
+			<button type="button" class="btn btn-warning" ng-click="makePublic(post)">Make public</button>
+			<button type="button" class="btn btn-danger" ng-click="deletePost(post, userFireObj.posts)">Delete</button>
+		</div> 
+		<!--
 		Posted: {{post.posted}} by {{post.user.username}}
 		<br>
 		Last edited: {{post.lastEdited.time}} by {{post.lastEdited.user.username}}
+		-->
 	</div>
 	<div class="panel-body">
 		<textarea class="form-control" row="3" ng-model="post.content" placeholder="Enter post content"></textarea>

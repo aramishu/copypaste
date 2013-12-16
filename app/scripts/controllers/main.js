@@ -74,5 +74,12 @@ angular.module('richwebApp')
     $scope.login_user = function (_newUser) {
       angularFireAuth.login("password", _newUser);
     };
+    
+    $scope.makePublic = function (_post) {
+      $scope.posts.push($scope.userFireObj.posts.splice(_post, 1)[0]);//splices the element out of the private array and adds it to the public
+    };
 
+    $scope.deletePost = function (_post, _posts) {
+      _posts.splice(_post, 1);
+    }
   });

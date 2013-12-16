@@ -96,3 +96,7 @@ body {
   background-color: #FFFFFF; 
   color: #555555;
 }
+
+.btn-group {
+  margin-top: 10px;
+}
