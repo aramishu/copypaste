@@ -42,11 +42,12 @@ angular.module('richwebApp')
     });
 
     $scope.postNewPost = function (_newPost) {
-      var newPost = {topic: _newPost.topic, content: _newPost.content};
+      var now = new Date();
+      var newPost = {postid: now.getTime() + $scope.user.id, topic: _newPost.topic, content: _newPost.content};
       newPost.user = {id: $scope.user.id, username: $scope.user.username};
       if(newPost && newPost.content != '') {
-        newPost.posted = new Date().toString();
-        newPost.lastEdited = { user: { id: $scope.user.id, username: $scope.user.username}, time: new Date().toString() };
+        newPost.posted = now.toString();
+        newPost.lastEdited = { user: { id: $scope.user.id, username: $scope.user.username}, time: now.toString() };
 	
 	if(_newPost.public) {
           if(!$scope.posts) $scope.posts = []; 
@@ -76,6 +77,7 @@ angular.module('richwebApp')
     };
     
     $scope.makePublic = function (_post) {
+      if(!$scope.posts) $scope.posts = [];
       $scope.posts.push($scope.userFireObj.posts.splice(_post, 1)[0]);//splices the element out of the private array and adds it to the public
     };
 

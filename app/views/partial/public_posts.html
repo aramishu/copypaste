@@ -1,8 +1,9 @@
-<div ng-repeat="post in posts" class="panel panel-primary">
+<div ng-repeat="post in posts | filter:postid" class="panel panel-primary">
 	<div class="panel-heading">
 		<input type="text" class="form-control post-topic" ng-model="post.topic" placeholder="Enter topic">
 		<div class="btn-group">
 			<button type="button" class="btn btn-danger" ng-click="deletePost(post, posts)">Delete</button>
+			<a role="button" class="btn btn-default" ng-hide="postid" target="_blank" href="#/post/{{post.postid}}">Share</a>
 		</div> 
 		<!--
 		Posted: {{post.posted}} by {{post.user.username}}

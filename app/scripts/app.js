@@ -25,6 +25,10 @@ angular.module('richwebApp', [
         templateUrl: 'views/login.html',
         controller: 'MainCtrl'
       })
+      .when('/post/:postid', {
+        templateUrl: 'views/publicPost.html',
+        controller: 'PublicpostCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
