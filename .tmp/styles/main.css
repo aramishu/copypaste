@@ -105,3 +105,13 @@ body {
   background-color: #FFFFFF;
   color: #555555;
 }
+
+.private-post-topic {
+  background-color: #f2dede;
+  color: #b94a48;
+}
+
+.private-post-topic:focus {
+  background-color: #FFFFFF;
+  color: #555555;
+}

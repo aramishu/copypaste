@@ -4,9 +4,9 @@ angular.module('richwebApp')
   .controller('MainCtrl', function ($scope, angularFire, angularFireAuth, FIREBASE_BASE, $location) {
     //$scope.posts = [];
     
-    var ref = new Firebase(FIREBASE_BASE);
-    angularFire(ref, $scope, "posts");
-    angularFireAuth.initialize(ref, {scope: $scope, name: "user"});
+    var refPubPosts = new Firebase(FIREBASE_BASE + "/publicPosts");
+    angularFire(refPubPosts, $scope, "posts");
+    angularFireAuth.initialize(new Firebase(FIREBASE_BASE), {scope: $scope, name: "user"});
 
 
     $scope.login = function () {
@@ -18,7 +18,21 @@ angular.module('richwebApp')
     };
 
     $scope.$on("angularFireAuth:login", function(evt, user) { // User logged in.
-      console.log("User logged in");
+      console.log(user);
+
+      // need to initialise users. annoying "feature" of firebase is that it deletes empty objects. should only be needed when adding the first user.
+      var usersRef = new Firebase(FIREBASE_BASE + "/users");
+      angularFire(usersRef, $scope, "usersFireObj");
+      if(!$scope.usersFireObj) {
+        $scope.usersFireObj = {};      }
+
+      var userRef = new Firebase(FIREBASE_BASE + "/users/" + user.uid);
+      angularFire(userRef, $scope, "userFireObj");
+      //check if new user
+      if(!$scope.userFireObj) {
+        $scope.userFireObj = {uid: user.uid}; //initialise object
+      }
+      
       $location.path("home");
     });
     
@@ -34,9 +48,15 @@ angular.module('richwebApp')
         newPost.posted = new Date().toString();
         newPost.lastEdited = { user: { id: $scope.user.id, username: $scope.user.username}, time: new Date().toString() };
 	
-        if(!$scope.posts) $scope.posts = []; 
-        $scope.posts.push(newPost);
-
+	if(_newPost.public) {
+          if(!$scope.posts) $scope.posts = []; 
+          $scope.posts.push(newPost);
+        } else {
+          if(!$scope.userFireObj.posts){
+            $scope.userFireObj.posts = [];
+          }
+          $scope.userFireObj.posts.push(newPost);
+        }
         //clear newPost if successful
         _newPost.topic = '';
         _newPost.content = '';

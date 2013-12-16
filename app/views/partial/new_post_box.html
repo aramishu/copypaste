@@ -8,6 +8,11 @@
 			<input type="text" class="form-control" id="new_post_topic" ng-model="newPost.topic" placeholder="Enter topic">
 		</div>
 		<textarea class="form-control" row="3" ng-model="newPost.content" placeholder="Enter post content"></textarea>
+		<div class="checkbox">
+			<label>
+				<input ng-model="newPost.public" type="checkbox">Public
+			</label>
+		</div>
 	</div>
 	<div class="panel-footer">
 		<button type="button" class="btn btn-success btn-block" ng-click="postNewPost(newPost)">Post</button>
