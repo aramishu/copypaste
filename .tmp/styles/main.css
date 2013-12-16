@@ -95,3 +95,13 @@ body {
     border-bottom: 0;
   }
 }
+
+.post-topic {
+  background-color: #428bca;
+  color: #FFFFFF;
+}
+
+.post-topic:focus {
+  background-color: #FFFFFF;
+  color: #555555;
+}

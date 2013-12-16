@@ -1,0 +1,15 @@
+<div class="panel panel-success">
+	<div class="panel-heading">
+		<h3 class="panel-title">New Post</h3>
+	</div>
+	<div class="panel-body">
+		<div class="form-group">
+			<label class="sr-only" for="new_post_topic">Topic</label>
+			<input type="text" class="form-control" id="new_post_topic" ng-model="newPost.topic" placeholder="Enter topic">
+		</div>
+		<textarea class="form-control" row="3" ng-model="newPost.content" placeholder="Enter post content"></textarea>
+	</div>
+	<div class="panel-footer">
+		<button type="button" class="btn btn-success btn-block" ng-click="postNewPost(newPost)">Post</button>
+	</div>
+</div>

@@ -17,7 +17,17 @@ angular.module('richwebApp', [
         templateUrl: 'views/home.html',
         controller: 'MainCtrl'
       })
+      .when('/signup', {
+        templateUrl: 'views/signup.html',
+        controller: 'MainCtrl'
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'MainCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+.constant('FIREBASE_BASE', 'https://copypaste.firebaseio.com/');
+;

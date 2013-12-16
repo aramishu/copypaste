@@ -1,0 +1,22 @@
+<div class="header">
+  <ul class="nav nav-tabs pull-right">
+	<li class="active"><a ng-href="#/home">Home</a></li>
+	<li><a ng-href="#" ng-show="user" ng-click="logout()">Logout</a></li>
+	<li>
+		<div class="btn-group" ng-hide="user">
+		  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+		    Login <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu">
+		    <li><a href="#" ng-click="login()">Login with Facebook</a></li>
+		    <li class="divider"></li>
+		    <li><a href="#/login">Login</a></li>
+		    <li><a href="#/signup">Sign up</a></li>
+		  </ul>
+		</div>
+	</li>
+  </ul>
+  <h3 class="text-muted">richweb</h3>
+</div>
+
+
